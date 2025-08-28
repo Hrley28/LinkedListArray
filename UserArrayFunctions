@@ -59,7 +59,7 @@ public class UserArrayFunctions {
         UserArrayFunctions list = new UserArrayFunctions(capacity);
 
         while (true) {
-            System.out.println("\n--- MENU ---");
+            System.out.println("Input List Array );
             System.out.println("1. Add number");
             System.out.println("2. Remove number (first)");
             System.out.println("3. Remove number (last)");
