@@ -1,0 +1,94 @@
+import java.util.Scanner;
+
+public class UserArrayFunctions {
+    private int[] arr;  
+    private int size;   
+    public UserArrayFunctions(int capacity) {
+        arr = new int[capacity];
+        size = 0;
+    }
+    public void add(int value) {
+        if (size >= arr.length) {
+            System.out.println("Array is full! Cannot add " + value);
+        } else {
+            arr[size] = value;
+            size++;
+            System.out.println(value + " added.");
+        }
+    }
+    public void removeFirst() {
+        if (size == 0) {
+            System.out.println("Array is empty! Nothing to remove.");
+        } else {
+            int removed = arr[0];
+            for (int i = 1; i < size; i++) {
+                arr[i - 1] = arr[i];
+            }
+            arr[size - 1] = 0;
+            size--;
+            System.out.println("Removed first: " + removed);
+        }
+    }
+    public void removeLast() {
+        if (size == 0) {
+            System.out.println("Array is empty! Nothing to remove.");
+        } else {
+            int removed = arr[size - 1];
+            arr[size - 1] = 0; 
+            size--;
+            System.out.println("Removed last: " + removed);
+        }
+    }
+    public void printArray() {
+        if (size == 0) {
+            System.out.println("Array is empty.");
+            return;
+        }
+        System.out.print("Array elements: [ ");
+        for (int i = 0; i < size; i++) {
+            System.out.print(arr[i] + " ");
+        }
+        System.out.println("]");
+    }
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        System.out.print("Enter array capacity: ");
+        int capacity = sc.nextInt();
+
+        UserArrayFunctions list = new UserArrayFunctions(capacity);
+
+        while (true) {
+            System.out.println("\n--- MENU ---");
+            System.out.println("1. Add number");
+            System.out.println("2. Remove number (first)");
+            System.out.println("3. Remove number (last)");
+            System.out.println("4. Show array");
+            System.out.println("5. Exit");
+            System.out.print("Choose: ");
+            int choice = sc.nextInt();
+
+            switch (choice) {
+                case 1:
+                    System.out.print("Enter integer: ");
+                    int num = sc.nextInt();
+                    list.add(num);
+                    break;
+                case 2:
+                    list.removeFirst();
+                    break;
+                case 3:
+                    list.removeLast();
+                    break;
+                case 4:
+                    list.printArray();
+                    break;
+                case 5:
+                    System.out.println("Goodbye!");
+                    return;
+                default:
+                    System.out.println("Invalid choice!");
+            }
+        }
+    }
+}
